@@ -12,4 +12,9 @@ class userController extends Controller
         $get = User::all();
         return response()->json($get);
     }
+
+    public function show(User $user) {
+        $get = User::where('id', $user->id)->get();
+        return response()->json($get);
+    }
 }

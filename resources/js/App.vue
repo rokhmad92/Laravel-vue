@@ -1,7 +1,8 @@
 <template>
-    <router-link to="/">Home</router-link> | 
-    <router-link to="/users">Show All Users</router-link>
-    <br><br>
+    <div class="flex justify-center">
+        <router-link class="mx-3" to="/">Home</router-link>|
+        <router-link class="mx-3" to="/users">Show All Users</router-link>
+    </div>
     <router-view></router-view>
 </template>
 
