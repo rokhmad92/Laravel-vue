@@ -17,4 +17,8 @@ class userController extends Controller
         $get = User::where('id', $user->id)->get();
         return response()->json($get);
     }
+
+    public function store(Request $request) {
+        
+    }
 }
