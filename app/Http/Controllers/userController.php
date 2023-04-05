@@ -32,4 +32,8 @@ class userController extends Controller
         $user = User::destroy($user->id);
         return $user;
     }
+
+    public function update() {
+        
+    }
 }

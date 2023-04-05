@@ -25,7 +25,7 @@ export default {
     },
     methods: {
         handleButton(id_user) {
-            axios.post('/api/users/' + id_user, {id: id_user}).then((response) => {
+            axios.post('/api/users/' + id_user, id_user).then((response) => {
                     console.log(response)
                     // refresh data
                     axios.get('/api/users').then((response) => {
