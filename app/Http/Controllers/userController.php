@@ -27,4 +27,9 @@ class userController extends Controller
 
         return $user;
     }
+
+    public function destroy(User $user) {
+        $user = User::destroy($user->id);
+        return $user;
+    }
 }
