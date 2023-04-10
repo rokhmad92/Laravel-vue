@@ -1,5 +1,6 @@
 <template>
     <h1 class="text-xl">List Users :</h1>
+    <h1 id="notif" class="invisible text-blue-500"></h1>
     <br>
     <ul>
         <li v-for="user in users" :key="user.id">
@@ -23,7 +24,6 @@ export default {
 
         // menggunakan axio = lebih mudah dan canggih
         axios.get('/api/users').then((response) => {
-            console.log(response),
             this.users = response.data
         })
     },

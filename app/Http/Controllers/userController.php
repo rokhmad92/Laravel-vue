@@ -19,13 +19,16 @@ class userController extends Controller
     }
 
     public function store(Request $request) {
-        $user = User::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
 
-        return $user;
+        return response()->json([
+            'status' => 200,
+            'messages' => 'Berhasil Menambahkan data'
+        ]);;
     }
 
     public function destroy(User $user) {
