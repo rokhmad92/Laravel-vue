@@ -44,15 +44,9 @@ export default {
     },
     mounted() {
         axios.get('/api/users/' + this.params).then((response) => {
-                console.log(response)
                 this.user = response.data
             })
     },
-    methods: {
-        handleSubmit() {
-
-        }
-    }
 }
 </script>
 <!-- axios.post('/api/users/' + id_user, id_user).then((response) => {

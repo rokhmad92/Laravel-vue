@@ -34,7 +34,7 @@ export default {
     methods: {
         handleSubmit() {
             axios.post('/api/users', this.form).then((response) => {
-                    console.log(response.data.messages),
+                    this.$toast.success(response.data.messages);
                     this.$router.push({ path: '/users' })
                 }).catch((error) => {
                     console.log(error)

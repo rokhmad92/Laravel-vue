@@ -14,7 +14,6 @@ import axios from 'axios';
 export default {
     mounted () {
         axios.get('/api/users').then((response) => {
-            console.log(response),
             this.users = response.data
         })
     },
@@ -26,7 +25,9 @@ export default {
     methods: {
         handleButton(id_user) {
             axios.post('/api/users/' + id_user, id_user).then((response) => {
-                    console.log(response)
+                    this.$toast.warning(`Delete User Success`, {
+                        position: "top-right"
+                    });
                     // refresh data
                     axios.get('/api/users').then((response) => {
                         console.log(response),
