@@ -1,7 +1,7 @@
 <template>
     <h1 class="text-xl">Register User</h1>
     <br>
-    <form action="/users" @submit.prevent="handleSubmit" method="POST">
+    <form @submit.prevent="handleSubmit">
         <div class="mb-3">
             <label for="name">Name : </label>
             <input type="text" v-model="form.name" id="name" class="shadow appearance-none border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
