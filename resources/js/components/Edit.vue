@@ -1,7 +1,6 @@
 <template>
     <h1 class="text-xl">Edit User</h1>
     <form @submit.prevent="handleSubmit" v-for="detail in form" :key="detail.id">
-        <h1 class="text-xl">{{ detail.name }}</h1>
         <br>
         <div class="mb-3">
             <label for="name">Name : </label>
@@ -24,6 +23,7 @@ export default {
         axios.get('/api/users/' + this.id).then((response) => {
                 this.form = response.data
             })
+        console.log(this.form.name)
     },
     data() {
         return {
@@ -35,8 +35,12 @@ export default {
     },
     methods: {
         handleSubmit() {
-            axios.put('/api/users/' + this.id, this.from).then((response) => {
-                
+            console.log(this.form)
+            axios.put('/api/users/' + this.id, this.form).then((response) => {
+                console.log(response.data)
+                this.$router.go(-1)
+            }).catch((error) => {
+                console.log(error)
             })
         }
     },

@@ -32,11 +32,17 @@ class userController extends Controller
     }
 
     public function destroy(User $user) {
-        $user = User::destroy($user->id);
-        return $user;
+        User::destroy($user->id);
+        return response()->json([
+            'status' => 200
+        ]);
     }
 
-    public function update() {
-        
+    public function update($id, Request $request) {
+        // User::where('id', $user->id)->update([
+        //     'name' => $request->name,
+        //     'email' => $request->email
+        // ]);
+        return $request->email;
     }
 }
