@@ -23,7 +23,6 @@ export default {
         axios.get('/api/users/' + this.id).then((response) => {
                 this.form = response.data
             })
-        console.log(this.form.name)
     },
     data() {
         return {
@@ -35,9 +34,8 @@ export default {
     },
     methods: {
         handleSubmit() {
-            console.log(this.form)
-            axios.put('/api/users/' + this.id, this.form).then((response) => {
-                console.log(response.data)
+            axios.put('/api/users/' + this.id, this.form[0]).then((response) => {
+                this.$toast.success(response.data.messages);
                 this.$router.go(-1)
             }).catch((error) => {
                 console.log(error)

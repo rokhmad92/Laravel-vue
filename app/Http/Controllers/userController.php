@@ -38,11 +38,14 @@ class userController extends Controller
         ]);
     }
 
-    public function update($id, Request $request) {
-        // User::where('id', $user->id)->update([
-        //     'name' => $request->name,
-        //     'email' => $request->email
-        // ]);
-        return $request->email;
+    public function update(User $user, Request $request) {
+        User::where('id', $user->id)->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+        return response()->json([
+            'status' => 200,
+            'messages' => 'Berhasil Update Data!'
+        ]);
     }
 }
