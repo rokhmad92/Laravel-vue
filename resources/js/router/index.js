@@ -5,6 +5,7 @@ import userView from '../components/User.vue'
 import editView from '../components/Edit.vue'
 import registerView from '../components/Register.vue'
 import deleteView from '../components/Delete.vue'
+import searchView from '../components/Search.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +35,10 @@ const router = createRouter({
       path: '/user/edit/:id',
       component: editView,
       props: true
+    },
+    {
+      path: '/users/search',
+      component: searchView,
     },
   ]
 })

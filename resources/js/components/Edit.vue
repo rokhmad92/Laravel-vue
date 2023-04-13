@@ -35,7 +35,9 @@ export default {
     methods: {
         handleSubmit() {
             axios.put('/api/users/' + this.id, this.form[0]).then((response) => {
-                this.$toast.success(response.data.messages);
+                this.$toast.info(response.data.messages, {
+                    position: "top-right",
+                });
                 this.$router.go(-1)
             }).catch((error) => {
                 console.log(error)
