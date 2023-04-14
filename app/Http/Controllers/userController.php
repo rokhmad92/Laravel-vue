@@ -48,4 +48,9 @@ class userController extends Controller
             'messages' => 'Berhasil Update Data!'
         ]);
     }
+
+    public function search($keyword) {
+        $data = User::where('name', 'LIKE', '%' . $keyword . '%')->get();
+        return $data;
+    }
 }

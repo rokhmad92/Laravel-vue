@@ -25,4 +25,5 @@ Route::controller(userController::class)->group(function() {
     Route::post('/users/{user:id}', 'destroy');
     Route::put('/users/{user:id}', 'update');
     Route::get('/users/{user:id}', 'show');
+    Route::get('/search/{keywrod}', 'search');
 });
