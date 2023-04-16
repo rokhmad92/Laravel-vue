@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class userController extends Controller
 {
@@ -19,6 +20,22 @@ class userController extends Controller
     }
 
     public function store(Request $request) {
+        $validateData = validator::make($request->input(), [
+            'name' => 'required|min:4',
+            'email' => 'required|email',
+            'password' => 'required|min:8'
+        ], [
+            'name.required' => 'Kolom Name tidak boleh kosong!',
+            'password.min' => 'Password minimal 8 karakter'
+        ]);
+
+        if($validateData->fails()) {
+            return response()->json([
+                'status' => 400,
+                'messages' => $validateData->errors()
+            ]);
+        }
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
