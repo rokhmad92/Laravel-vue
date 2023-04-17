@@ -13,6 +13,13 @@
         </div>
         <button class="bg-blue-300 p-2 rounded-full peer-invalid:invisible px-8">Edit</button>
     </form>
+    <br><br>
+
+    <!-- upload Image -->
+    <img :src="imgPriview" width="200">
+    <br>
+    <input type="file" @change="inputFile">
+    <button @click="formImg" class="border bg-slate-500">Upload Foto</button>
 </template>
 
 <script>
@@ -28,11 +35,33 @@ export default {
         return {
             form: {
                 name: '',
-                email: ''
-            }
+                email: '',
+            },
+            imgPriview : '',
+            photo : ''
         }
     },
     methods: {
+        inputFile(e) {
+            let files = e.target.files[0]
+            if (files.type == 'image/png' || files.type == 'image/jpg' || files.type == 'image/jpeg') {
+                console.log(files)
+                this.imgPriview = URL.createObjectURL(files)
+                this.photo = files
+            } else {
+                console.log(`this file Not Image`)
+                this.imgPriview = ''
+            }
+        },
+        formImg() {
+            let form = new FormData()
+            form.append('photo', this.photo)
+
+            axios.post('/api/user/' + this.id, form).then(response => {
+                console.log(response)
+                this.$router.push({ path: '/user/' + this.id })
+            })
+        },
         handleSubmit() {
             axios.put('/api/users/' + this.id, this.form[0]).then((response) => {
                 this.$toast.info(response.data.messages, {

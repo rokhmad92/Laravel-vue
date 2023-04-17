@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class userController extends Controller
@@ -63,6 +64,25 @@ class userController extends Controller
         return response()->json([
             'status' => 200,
             'messages' => 'Berhasil Update Data!'
+        ]);
+    }
+
+    public function upload(User $user, Request $request) {
+        $file = $request->photo->getClientOriginalName() . time();
+
+        $path = public_path('images');
+        if(!empty($user->photo) && file_exists($path . '/' . $user->photo)){
+            unlink($path . '/' . $user->photo);
+        }
+
+        User::where('id', $user->id)->update([
+            'photo' => $file
+        ]);
+
+        $request->photo->move(public_path('images'), $file);
+        return response()->json([
+            'status' => 200,
+            'messages' => 'Berhasil Upload File'
         ]);
     }
 

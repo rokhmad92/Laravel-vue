@@ -1,6 +1,7 @@
 <template>
     <br>
     <div v-for="detail in user" :key="detail.id">
+        <img v-if="detail.photo" :src="'/images/' + detail.photo" width="200" class="mx-auto mb-4">
         <h1 class="text-center font-bold text-2xl" v-text="detail.name"></h1>
         <p class="text-center">Email : {{ detail.email }}</p>
 

@@ -43,7 +43,7 @@ export default {
                         this.errmsg = response.data.messages
                     } else {
                         this.$toast.success(response.data.messages);
-                        // this.$router.push({ path: '/users' })
+                        this.$router.push({ path: '/users' })
                     }
                 }).catch((error) => {
                     console.log(error)
